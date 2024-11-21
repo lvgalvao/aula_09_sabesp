@@ -1,11 +1,19 @@
+from typing import List
 from pydantic import validate_call
 
-@validate_call()
-def soma_de_3_parametros(num1: float, num2: float, num3: float) -> float:
-    resultado_soma_3_parametros = num1 + num2 + num3
-    return resultado_soma_3_parametros
+temperatura_celsius = [0, 20, 100]
 
-resultado_1 = soma_de_3_parametros(5,5,5)
-resultado_2 = soma_de_3_parametros("5","5","5")
-print(resultado_1)
-print(resultado_2)
+@validate_call
+def conversor(lista_temp_celsius: List[float]) -> List[float]:
+    """
+    Função que converte temperaturas de Celsius para Fah
+    """
+    lista_temp_fah = []
+    for temp_celsius in lista_temp_celsius:
+        temp_fah = (temp_celsius * 9/5) + 32
+        lista_temp_fah.append(temp_fah)
+    return lista_temp_fah
+
+temperatura_convertida = conversor([0, 20, "Marcelo", 500])
+
+print(temperatura_convertida)
